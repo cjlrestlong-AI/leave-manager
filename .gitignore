@@ -1,0 +1,6 @@
+# 頂層：忽略工作區所有內容，僅納入 app/ 與 site/ 兩個目錄及本倉庫說明檔
+/*
+!/app/
+!/site/
+!/.gitignore
+!/README.md
