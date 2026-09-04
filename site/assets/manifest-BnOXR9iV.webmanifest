@@ -1,0 +1,17 @@
+{
+  "name": "假期管理",
+  "short_name": "假期管理",
+  "description": "員工同事假期管理：登錄休假、自動偵測重疊、提前提醒。",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f6f7f4",
+  "theme_color": "#2C5742",
+  "icons": [
+    {
+      "src": "./favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

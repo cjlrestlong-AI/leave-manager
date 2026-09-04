@@ -1,0 +1,45 @@
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+}
+
+.row-gap-2 {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+}
+
+.spacer {
+  flex: 1;
+}

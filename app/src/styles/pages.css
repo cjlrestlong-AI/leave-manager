@@ -1,0 +1,835 @@
+/* ============================================================
+   頁面樣式：看板、月曆、時間軸、假單、同事、設定
+   ============================================================ */
+
+/* ── 頁面容器與頁首 ── */
+.page {
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+.page-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  margin-bottom: var(--sp-6);
+  flex-wrap: wrap;
+}
+.page-head__titles {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.page-head__title {
+  font-size: var(--fs-2xl);
+  font-weight: var(--fw-semibold);
+  color: var(--text-primary);
+  letter-spacing: var(--ls-tight);
+}
+.page-head__desc {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+}
+.page-head__actions {
+  display: flex;
+  gap: var(--sp-2);
+  align-items: center;
+}
+
+/* ───────────────── 看板 Dashboard ───────────────── */
+.today-panel {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-6);
+  flex-wrap: wrap;
+  background: var(--primary);
+  color: var(--text-on-primary);
+  border-radius: var(--r-lg);
+  padding: var(--sp-5) var(--sp-6);
+  margin-bottom: var(--sp-6);
+}
+.today-panel__main {
+  display: flex;
+  align-items: baseline;
+  gap: var(--sp-2);
+}
+.today-panel__label {
+  font-size: var(--fs-sm);
+  opacity: 0.85;
+}
+.today-panel__count {
+  font-size: var(--fs-3xl);
+  font-weight: var(--fw-semibold);
+  line-height: 1;
+}
+.today-panel__unit {
+  font-size: var(--fs-md);
+  opacity: 0.85;
+}
+.today-panel__people {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  flex-wrap: wrap;
+}
+.today-panel__empty {
+  font-size: var(--fs-sm);
+  opacity: 0.8;
+}
+.today-panel__person {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  background: rgba(255, 255, 255, 0.14);
+  padding: 4px var(--sp-3) 4px 4px;
+  border-radius: var(--r-pill);
+}
+.today-panel__person-name {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+}
+
+.dash-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-5);
+  margin-bottom: var(--sp-5);
+}
+.dash-grid--two {
+  grid-template-columns: 1fr 1fr;
+}
+.reminder-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+}
+.reminder-group {
+  padding: var(--sp-2) 0;
+}
+.reminder-group + .reminder-group {
+  border-top: 1px solid var(--border);
+}
+.reminder-group__label {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: var(--sp-1);
+}
+.conflict-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+.obar-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+
+/* 本月熱度迷你月曆 */
+.mini-cal {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+.mini-cal__weekdays,
+.mini-cal__grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 3px;
+}
+.mini-cal__wd {
+  text-align: center;
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+  padding-bottom: 2px;
+}
+.mini-cal__cell {
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  font-size: var(--fs-xs);
+  border-radius: var(--r-sm);
+  color: var(--text-secondary);
+  background: var(--bg-subtle);
+}
+.mini-cal__cell--adj {
+  opacity: 0.4;
+}
+.mini-cal__cell--we {
+  color: var(--text-muted);
+}
+.mini-cal__cell--l1 {
+  background: var(--green-100);
+  color: var(--primary);
+}
+.mini-cal__cell--l2 {
+  background: var(--green-300);
+  color: #fff;
+}
+.mini-cal__cell--l3 {
+  background: var(--primary);
+  color: var(--text-on-primary);
+}
+
+/* ───────────────── 月曆 Calendar ───────────────── */
+.cal-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-4);
+  flex-wrap: wrap;
+}
+.cal-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+.cal-mobile-toggle {
+  display: none;
+}
+.cal-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-2);
+}
+.cal-weekday {
+  text-align: center;
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  color: var(--text-muted);
+  padding: var(--sp-1) 0;
+}
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--sp-2);
+}
+.cal-view--list {
+  display: none;
+}
+.cal-page--grid .cal-view--list {
+  display: none;
+}
+.cal-page--list .cal-view--grid {
+  display: none;
+}
+.cal-page--list .cal-view--list {
+  display: block;
+}
+.month-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+.month-list__item {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-4);
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  cursor: pointer;
+  transition: border-color var(--dur-fast) var(--ease-out);
+}
+.month-list__item:hover {
+  border-color: var(--primary-border);
+}
+.month-list__bar {
+  width: 4px;
+  align-self: stretch;
+  border-radius: var(--r-pill);
+  flex-shrink: 0;
+}
+.month-list__name {
+  font-size: var(--fs-base);
+  font-weight: var(--fw-medium);
+  color: var(--text-primary);
+  min-width: 0;
+}
+.month-list__range {
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+}
+.month-list__days {
+  margin-left: auto;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--text-secondary);
+  flex-shrink: 0;
+}
+
+/* ───────────────── 時間軸 Timeline ───────────────── */
+.tl {
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  background: var(--bg-surface);
+  overflow: hidden;
+}
+.tl__scroll {
+  overflow-x: auto;
+}
+.tl__inner {
+  position: relative;
+}
+.tl__head {
+  display: flex;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border);
+}
+.tl__head-name {
+  width: 168px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  padding: var(--sp-2) var(--sp-3);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  color: var(--text-muted);
+  border-right: 1px solid var(--border);
+}
+.tl__head-track {
+  display: flex;
+}
+.tl__day {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  border-right: 1px solid var(--border);
+  position: relative;
+  color: var(--text-secondary);
+}
+.tl__day--we {
+  background: var(--bg-subtle);
+  color: var(--text-muted);
+}
+.tl__day--today {
+  background: var(--primary-subtle);
+  color: var(--primary);
+}
+.tl__day--holiday {
+  background: var(--green-50);
+}
+.tl__day--monthstart {
+  border-left: 1px solid var(--border-strong);
+}
+.tl__month {
+  position: absolute;
+  top: 2px;
+  left: 3px;
+  font-size: 9px;
+  font-weight: var(--fw-semibold);
+  color: var(--text-muted);
+}
+.tl__daynum {
+  font-size: var(--fs-xs);
+}
+.tl__holi {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--primary);
+  margin-top: 1px;
+}
+.tl__bg {
+  position: absolute;
+  top: 44px;
+  bottom: 0;
+  display: flex;
+  pointer-events: none;
+}
+.tl__col {
+  flex-shrink: 0;
+  border-right: 1px solid var(--border);
+}
+.tl__col--we {
+  background: var(--bg-subtle);
+}
+.tl__col--holiday {
+  background: var(--green-50);
+}
+.tl__col--conflict {
+  background: var(--danger-bg);
+}
+.tl__col--today {
+  background: var(--primary-subtle);
+}
+.tl__today-line {
+  position: absolute;
+  top: 44px;
+  bottom: 0;
+  width: 2px;
+  background: var(--primary);
+  opacity: 0.6;
+  pointer-events: none;
+}
+.tl__rows {
+  position: relative;
+}
+.tl__empty {
+  padding: var(--sp-8);
+}
+.tl-custom {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--sp-2);
+}
+.tl-custom__sep {
+  color: var(--text-muted);
+  padding-bottom: var(--sp-3);
+}
+
+/* ───────────────── 假單 Leaves ───────────────── */
+.leaves-toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-4);
+  flex-wrap: wrap;
+}
+.leaves-toolbar .field {
+  flex: 1;
+  min-width: 200px;
+}
+.type-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-5);
+}
+.table-wrap {
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: var(--bg-surface);
+}
+.data-table {
+  width: 100%;
+}
+.data-table th,
+.data-table td {
+  padding: var(--sp-3) var(--sp-4);
+  text-align: left;
+  font-size: var(--fs-sm);
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+.data-table thead th {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  color: var(--text-muted);
+  background: var(--bg-subtle);
+  white-space: nowrap;
+}
+.data-table tbody tr:last-child td {
+  border-bottom: none;
+}
+.data-table tbody tr:hover {
+  background: var(--bg-subtle);
+}
+.data-table .sortable {
+  cursor: pointer;
+  user-select: none;
+}
+.data-table .th--num,
+.data-table td.tnum {
+  text-align: right;
+}
+.half-icons {
+  display: inline-flex;
+  gap: 2px;
+  margin-left: var(--sp-2);
+  color: var(--text-muted);
+  vertical-align: middle;
+}
+
+/* ───────────────── 同事 Employees ───────────────── */
+.emp-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: var(--sp-4);
+}
+.emp-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  padding: var(--sp-4);
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+}
+.emp-card__top {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+.emp-card__id {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.emp-card__name {
+  font-size: var(--fs-md);
+  font-weight: var(--fw-semibold);
+  color: var(--text-primary);
+}
+.emp-card__team {
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+}
+.emp-card__stat {
+  display: flex;
+  align-items: baseline;
+  gap: var(--sp-2);
+  padding: var(--sp-3);
+  background: var(--bg-subtle);
+  border-radius: var(--r-md);
+}
+.emp-card__stat-num {
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-semibold);
+  color: var(--primary);
+}
+.emp-card__stat-unit {
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+}
+.emp-card__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  margin-top: auto;
+}
+.emp-card__actions .btn {
+  flex: 1;
+}
+.emp-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+.emp-form__foot {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--sp-3);
+  margin-top: var(--sp-2);
+}
+
+/* ───────────────── 設定 Settings ───────────────── */
+.setting-section {
+  margin-bottom: var(--sp-5);
+}
+.setting-rows {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+}
+.setting-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  padding: var(--sp-3) 0;
+  border-bottom: 1px solid var(--border);
+}
+.setting-row:last-child {
+  border-bottom: none;
+}
+.setting-row__text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.setting-row__label {
+  font-size: var(--fs-base);
+  font-weight: var(--fw-medium);
+  color: var(--text-primary);
+}
+.setting-row__desc {
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+}
+.stepper {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-3);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-md);
+  padding: 2px;
+}
+.stepper__btn {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: var(--r-sm);
+  color: var(--text-secondary);
+  transition: background var(--dur-fast) var(--ease-out);
+}
+.stepper__btn:hover:not(:disabled) {
+  background: var(--bg-subtle);
+  color: var(--primary);
+}
+.stepper__btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.stepper__value {
+  min-width: 28px;
+  text-align: center;
+  font-size: var(--fs-md);
+  font-weight: var(--fw-semibold);
+  color: var(--text-primary);
+}
+.stepper__suffix {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-regular);
+  color: var(--text-muted);
+  margin-left: 2px;
+}
+.hol-group-title {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: var(--sp-4) 0 var(--sp-2);
+}
+.hol-list {
+  display: flex;
+  flex-direction: column;
+}
+.hol-item {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-2) 0;
+  border-bottom: 1px solid var(--border);
+}
+.hol-item__date {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--text-secondary);
+  flex-shrink: 0;
+  min-width: 48px;
+}
+.hol-item__name {
+  flex: 1;
+  font-size: var(--fs-base);
+  color: var(--text-primary);
+  min-width: 0;
+}
+.setting-note {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  margin-bottom: var(--sp-4);
+}
+.setting-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  margin-top: var(--sp-4);
+}
+.setting-test-msg {
+  margin-top: var(--sp-3);
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+}
+.setting-safety {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-2);
+  margin-top: var(--sp-4);
+  padding: var(--sp-3);
+  background: var(--warn-bg);
+  border: 1px solid var(--warn-border);
+  border-radius: var(--r-md);
+  font-size: var(--fs-xs);
+  color: var(--warn-700);
+  line-height: var(--lh-snug);
+}
+.setting-safety strong {
+  font-weight: var(--fw-semibold);
+}
+.add-holiday {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: var(--sp-3);
+  align-items: end;
+  margin-top: var(--sp-3);
+  padding: var(--sp-3);
+  background: var(--bg-subtle);
+  border-radius: var(--r-md);
+}
+.add-holiday__actions {
+  display: flex;
+  gap: var(--sp-2);
+  grid-column: 1 / -1;
+  justify-content: flex-end;
+}
+.sql-block {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  line-height: 1.6;
+  color: var(--text-primary);
+  background: var(--bg-inset);
+  border-radius: var(--r-md);
+  padding: var(--sp-4);
+  overflow-x: auto;
+  white-space: pre;
+  max-height: 50dvh;
+}
+
+/* leave-form 內部 */
+.leave-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+.leave-form__fields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+.leave-form__row {
+  display: flex;
+  gap: var(--sp-3);
+  align-items: flex-end;
+}
+.leave-form__row .field {
+  flex: 1;
+}
+.leave-form__quick {
+  display: flex;
+  gap: var(--sp-2);
+  padding-bottom: var(--sp-2);
+  flex-shrink: 0;
+}
+.leave-form__halves {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-4);
+}
+.leave-form__half {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+.leave-form__half-label {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-medium);
+  color: var(--text-secondary);
+}
+.leave-form__types {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+.leave-form__type-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sp-2);
+}
+.type-chip {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-2) var(--sp-3);
+  border-radius: var(--r-md);
+  background: var(--bg-subtle);
+  border: 1px solid transparent;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: border-color var(--dur-fast) var(--ease-out), background var(--dur-fast) var(--ease-out);
+}
+.type-chip__bar {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  background: var(--chip-color, var(--primary));
+  flex-shrink: 0;
+}
+.type-chip--active {
+  background: var(--bg-surface);
+  border-color: var(--chip-color, var(--primary));
+  color: var(--text-primary);
+}
+.leave-form__foot {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--sp-3);
+}
+.leave-form__date-error {
+  font-size: var(--fs-sm);
+  color: var(--danger-600);
+}
+
+/* ───────────────── 行動版調整 ───────────────── */
+@media (max-width: 1199px) {
+  .cal-mobile-toggle {
+    display: block;
+  }
+  .cal-view--grid {
+    display: block;
+  }
+  .cal-view--list {
+    display: none;
+  }
+  .cal-page--list .cal-view--grid {
+    display: none;
+  }
+  .cal-page--list .cal-view--list {
+    display: block;
+  }
+  .dash-grid,
+  .dash-grid--two {
+    grid-template-columns: 1fr;
+  }
+  .leave-form__type-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .add-holiday {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .today-panel {
+    gap: var(--sp-4);
+  }
+  .data-table thead {
+    display: none;
+  }
+  .data-table,
+  .data-table tbody,
+  .data-table tr,
+  .data-table td {
+    display: block;
+    width: 100%;
+  }
+  .data-table tr {
+    border: 1px solid var(--border);
+    border-radius: var(--r-md);
+    margin-bottom: var(--sp-2);
+    padding: var(--sp-1) 0;
+  }
+  .data-table td {
+    border-bottom: none;
+    display: flex;
+    justify-content: space-between;
+    gap: var(--sp-3);
+  }
+}

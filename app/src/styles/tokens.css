@@ -1,0 +1,156 @@
+/* ============================================================
+   設計令牌（Design Tokens）
+   墨綠單色系 + 大地色警示。全部為低飽和色，避免紅配綠的俗氣。
+   ============================================================ */
+
+:root {
+  /* ── 中性與背景：帶一點綠的暖白，不是純白也不是冷灰 ── */
+  --bg-canvas: #f6f7f4;
+  --bg-surface: #ffffff;
+  --bg-subtle: #f1f3ef;
+  --bg-inset: #edf0ea;
+
+  /* ── 墨綠主色階 ── */
+  --green-50: #eef4f0;
+  --green-100: #dce8e0;
+  --green-200: #b4cdbf;
+  --green-300: #7fa791;
+  --green-400: #4f8168;
+  --green-500: #3a6b52;
+  --green-600: #2c5742;
+  --green-700: #234434;
+  --green-800: #1b3327;
+  --green-900: #14261e;
+
+  --primary: var(--green-600);
+  --primary-hover: var(--green-700);
+  --primary-active: var(--green-800);
+  --primary-subtle: var(--green-50);
+  --primary-border: var(--green-200);
+
+  /* ── 文字 ── */
+  --text-primary: #16241d;
+  --text-secondary: #4a5a51;
+  --text-muted: #6b7a71;
+  --text-inverse: #ffffff;
+  --text-on-primary: #f2f7f4;
+
+  /* ── 邊框：層次主要靠邊框與底色差，而非陰影 ── */
+  --border: #e2e5df;
+  --border-strong: #cfd4cb;
+
+  /* ── 警示：赭石／琥珀（與墨綠同屬大地色系，和諧共存） ── */
+  --warn-700: #96631a;
+  --warn-600: #a9701c;
+  --warn-500: #c08a2e;
+  --warn-bg: #fbf3e4;
+  --warn-border: #eeddba;
+
+  /* ── 超標／錯誤：陶土紅（不用鮮紅） ── */
+  --danger-700: #7e3728;
+  --danger-600: #93412f;
+  --danger-500: #a8503c;
+  --danger-bg: #fbeeea;
+  --danger-border: #f0d6cd;
+
+  /* ── 語意色 ── */
+  --ok-600: #3c8264;
+  --ok-bg: #eaf5ee;
+  --ok-border: #c6e2d3;
+  --info-600: #2e6e8e;
+  --info-bg: #e9f1f6;
+  --info-border: #c3d9e6;
+
+  /* ── 假別色板：全站彩度只集中在這裡與警示色 ── */
+  --type-annual: #2c5742;
+  --type-sick: #4a7891;
+  --type-compensatory: #a98a3e;
+  --type-maternity: #a9758a;
+  --type-paternity: #8e7ba6;
+  --type-bereavement: #6a6f73;
+  --type-unpaid: #9ba3a0;
+  --type-other: #9a7b5a;
+
+  /* ── 頭像 12 色（低飽和） ── */
+  --avatar-0: #2c5742;
+  --avatar-1: #4a7891;
+  --avatar-2: #a98a3e;
+  --avatar-3: #a9758a;
+  --avatar-4: #6a6f73;
+  --avatar-5: #7e9b6b;
+  --avatar-6: #b08968;
+  --avatar-7: #5e8598;
+  --avatar-8: #8a6e9e;
+  --avatar-9: #96733f;
+  --avatar-10: #4f8a7b;
+  --avatar-11: #7c7a6b;
+
+  /* ── 字體 ── */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC',
+    'Noto Sans TC', 'Microsoft JhengHei', 'Source Han Sans TC', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, 'Cascadia Mono', Menlo, monospace;
+
+  /* ── 字級 ── */
+  --fs-xs: 12px;
+  --fs-sm: 13px;
+  --fs-base: 14px;
+  --fs-md: 15px;
+  --fs-lg: 17px;
+  --fs-xl: 20px;
+  --fs-2xl: 24px;
+  --fs-3xl: 30px;
+  --fs-4xl: 36px;
+
+  --lh-tight: 1.25;
+  --lh-snug: 1.45;
+  --lh-normal: 1.65;
+
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+
+  --ls-tight: -0.01em;
+  --ls-normal: 0.01em;
+
+  /* ── 間距：4px 基準 ── */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 20px;
+  --sp-6: 24px;
+  --sp-8: 32px;
+  --sp-10: 40px;
+  --sp-14: 56px;
+  --sp-18: 72px;
+
+  /* ── 圓角：上限 14px ── */
+  --r-xs: 4px;
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 14px;
+  --r-pill: 999px;
+
+  /* ── 陰影：墨綠調黑而非純黑 ── */
+  --sh-1: 0 1px 2px rgba(20, 38, 30, 0.06), 0 1px 1px rgba(20, 38, 30, 0.04);
+  --sh-2: 0 2px 6px rgba(20, 38, 30, 0.07), 0 8px 20px -8px rgba(20, 38, 30, 0.1);
+  --sh-3: 0 12px 32px -12px rgba(20, 38, 30, 0.18);
+
+  /* ── 聚焦環：設計的一部分 ── */
+  --ring: 0 0 0 3px rgba(44, 87, 66, 0.18);
+  --ring-warn: 0 0 0 3px rgba(150, 99, 26, 0.2);
+  --ring-danger: 0 0 0 3px rgba(147, 65, 47, 0.2);
+
+  /* ── 動效 ── */
+  --dur-fast: 120ms;
+  --dur-base: 180ms;
+  --dur-slow: 260ms;
+  --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-in: cubic-bezier(0.55, 0.06, 0.68, 0.19);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ── 佈局 ── */
+  --sidebar-w: 232px;
+  --topbar-h: 56px;
+  --container-max: 1360px;
+}
