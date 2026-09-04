@@ -125,15 +125,17 @@
   align-items: center;
   background: var(--bg-surface);
   border: 1px solid var(--border-strong);
-  border-radius: var(--r-md);
+  /* Material Design 3 outlined text field：4dp 圓角 */
+  border-radius: var(--r-xs);
   transition: border-color var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
 }
 .field__control:focus-within {
+  /* Material：聚焦時外框轉為主色並以 2px（1px border + 1px ring）呈現，且不產生位移 */
   border-color: var(--primary);
-  box-shadow: var(--ring);
+  box-shadow: 0 0 0 1px var(--primary);
 }
 .field__control--prefixed {
-  padding-left: var(--sp-3);
+  padding-left: var(--sp-4);
 }
 .field__prefix {
   display: inline-flex;
@@ -144,20 +146,36 @@
   width: 100%;
   border: none;
   background: transparent;
-  padding: var(--sp-3) var(--sp-3);
+  /* Material：內文與邊框保持 16px 水平 / 14px 垂直留白，避免文字貼邊 */
+  padding: 14px var(--sp-4);
   font-size: var(--fs-base);
   color: var(--text-primary);
   outline: none;
 }
 .field__textarea {
+  display: block;
+  width: 100%;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-xs);
+  padding: 14px var(--sp-4);
   resize: vertical;
   min-height: 64px;
   line-height: var(--lh-snug);
   font-family: inherit;
+  font-size: var(--fs-base);
+  color: var(--text-primary);
+  outline: none;
+  transition: border-color var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
+}
+.field__textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 1px var(--primary);
 }
 .field__control--select {
   position: relative;
-  padding-right: var(--sp-7);
+  /* 預留下拉箭頭空間（原 --sp-7 未定義，更正為 --sp-6） */
+  padding-right: var(--sp-6);
 }
 .field__control--select select {
   appearance: none;
@@ -165,7 +183,7 @@
   width: 100%;
   border: none;
   background: transparent;
-  padding: var(--sp-3);
+  padding: 14px var(--sp-4);
   font-size: var(--fs-base);
   color: var(--text-primary);
   outline: none;
@@ -173,13 +191,13 @@
 }
 .field__select-icon {
   position: absolute;
-  right: var(--sp-3);
+  right: var(--sp-4);
   color: var(--text-muted);
   pointer-events: none;
 }
 .field__control--date {
   position: relative;
-  padding-left: var(--sp-3);
+  padding-left: var(--sp-4);
 }
 .field__date-icon {
   color: var(--text-muted);
@@ -189,7 +207,7 @@
   flex: 1;
   border: none;
   background: transparent;
-  padding: var(--sp-3) var(--sp-3);
+  padding: 14px var(--sp-4);
   font-size: var(--fs-base);
   color: var(--text-primary);
   outline: none;
@@ -205,7 +223,7 @@
   border-color: var(--danger-500);
 }
 .field--error .field__control:focus-within {
-  box-shadow: var(--ring-danger);
+  box-shadow: 0 0 0 1px var(--danger-500);
 }
 
 /* ───────────────── Switch ───────────────── */

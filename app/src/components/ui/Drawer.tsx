@@ -15,11 +15,16 @@ interface DrawerProps {
 
 export function Drawer({ open, onClose, title, children, footer, width = 460, label = '抽屜', className }: DrawerProps) {
   const ref = useRef<HTMLDivElement>(null);
+  // 用 ref 持有最新的 onClose，使 effect 僅依賴 [open]，
+  // 避免父層每次重新渲染（例如受控輸入每次按鍵）導致 effect 重新執行、
+  // 再次觸發 30ms 的 focus() 而打斷中文輸入法（IME）組字。
+  const onCloseRef = useRef(onClose);
+  onCloseRef.current = onClose;
 
   useEffect(() => {
     if (!open) return undefined;
     function onKey(e: KeyboardEvent) {
-      if (e.key === 'Escape') onClose();
+      if (e.key === 'Escape') onCloseRef.current();
     }
     document.addEventListener('keydown', onKey);
     const prev = document.body.style.overflow;
@@ -32,7 +37,7 @@ export function Drawer({ open, onClose, title, children, footer, width = 460, la
       document.body.style.overflow = prev;
       clearTimeout(t);
     };
-  }, [open, onClose]);
+  }, [open]);
 
   if (!open) return null;
 
